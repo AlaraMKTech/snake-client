@@ -1,9 +1,15 @@
 const net = require("net");
 
+// Movement Commands
+//"Move: up" - move up one square (unless facing down)
+//"Move: down" - move down one square (unless facing up)
+//"Move: left" - move left one square (unless facing right)
+//"Move: right" - move left one square (unless facing left)
+
 // establishes a connection with the game server
 const connect = function () {
   const conn = net.createConnection({
-    host: "localhost"
+    host: "localhost",
     port: 50541,
   });
 
@@ -19,7 +25,10 @@ const connect = function () {
     console.log("Successfully connected to game server.");
 
     conn.write("Name: HMD");
-  })
+
+    conn.write("Move: up");
+  });
+
 
   return conn;
 };
