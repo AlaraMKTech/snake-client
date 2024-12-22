@@ -4,7 +4,7 @@ const net = require("net");
 const connect = function () {
   const conn = net.createConnection({
     host: "localhost"
-    port: 4455
+    port: 50541,
   });
 
   // interpret incoming data as text
@@ -14,6 +14,12 @@ const connect = function () {
   conn.on("data", (data) => {
     console.log("Incoming data: ", data);
   });
+
+  conn.on("connect", () => {
+    console.log("Successfully connected to game server.");
+
+    conn.write("Name: HMD");
+  })
 
   return conn;
 };
